@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Delivery Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 13px;
+            padding: 0;
+            height: 100%;
+            background-color: white;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+
+        .tracker-container {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: #3498db;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        .progress-container {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            background-color: white;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: white;
+            border-radius: 20px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        .car {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100px;
+            height: 52px;
+            background-color: transparent;
+            background-image: url('https://img.icons8.com/ios/452/car.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: left 1s ease;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .checkpoint {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            bottom: -50px;
+            width: 100px;
+            padding: 12px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkpoint-1 { background-color: #3498db; left: 0%; }
+        .checkpoint-2 { background-color: #2ecc71; left: 20%; }
+        .checkpoint-3 { background-color: #f39c12; left: 40%; }
+        .checkpoint-4 { background-color: #e74c3c; left: 60%; }
+        .checkpoint-5 { background-color: #8e44ad; left: 80%; }
+        .checkpoint-6 { background-color: #1abc9c; left: 100%; }
+
+        .checkpoint:hover { opacity: 0.8; }
+
+        .checkpoint-number { font-size: 1.5rem; }
+        .checkpoint-name { font-size: 0.9rem; }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-top: 100px;
+        }
+
+        #startButton {
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .tracker-container { padding: 20px; }
+            .progress-container { height: 30px; }
+            .car {
+                width: 80px;
+                height: 42px;
+            }
+            .checkpoint {
+                width: 40px;
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+            .checkpoint-name { font-size: 0.5rem; }
+            .checkpoint-number { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="tracker-container">
+        <div class="header">
+            <h1>Car Delivery Tracker</h1>
+            <p>Your car is on its way! Check the progress below.</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress" id="progress"></div>
+            <div class="car" id="car"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="checkpoint checkpoint-1" id="showroom">
+                <div class="checkpoint-number">1</div>
+                <div class="checkpoint-name">Showroom</div>
+            </div>
+            <div class="checkpoint checkpoint-2" id="terminal1">
+                <div class="checkpoint-number">2</div>
+                <div class="checkpoint-name">Terminal 1</div>
+            </div>
+            <div class="checkpoint checkpoint-3" id="terminal2">
+                <div class="checkpoint-number">3</div>
+                <div class="checkpoint-name">Terminal 2</div>
+            </div>
+            <div class="checkpoint checkpoint-4" id="terminal3">
+                <div class="checkpoint-number">4</div>
+                <div class="checkpoint-name">Terminal 3</div>
+            </div>
+            <div class="checkpoint checkpoint-5" id="terminal4">
+                <div class="checkpoint-number">5</div>
+                <div class="checkpoint-name">Terminal 4</div>
+            </div>
+            <div class="checkpoint checkpoint-6" id="clientAddress">
+                <div class="checkpoint-number">6</div>
+                <div class="checkpoint-name">Client Address</div>
+            </div>
+        </div>
+
+        <div class="timer" id="countdown">
+            Time to Next Terminal: <span id="timeRemaining">Waiting to start...</span>
+        </div>
+
+    </div>
+
+    <script>
+        const progressBar = document.getElementById('progress');
+        const timeRemaining = document.getElementById('timeRemaining');
+        const carElement = document.getElementById('car');
+        const startBtn = document.getElementById('startButton');
+
+        const stages = [
+            { name: 'Showroom', time: 0 },
+            { name: 'Terminal 1', time: 7 * 60 * 60 * 1000 },
+            { name: 'Terminal 2', time: 14 * 60 * 60 * 1000 },
+            { name: 'Terminal 3', time: 21 * 60 * 60 * 1000 },
+            { name: 'Terminal 4', time: 28 * 60 * 60 * 1000 },
+            { name: 'Client Address', time: 35 * 60 * 60 * 1000 },
+        ];
+
+        let currentStage = 0;
+        let startTime = null;
+        let intervalId = null;
+
+        startBtn.addEventListener('click', () => {
+            startTime = Date.now();
+            localStorage.setItem('startTime', startTime);
+            startCountdown();
+        });
+
+        function calculateTimeLeft() {
+            const elapsedTime = Date.now() - startTime;
+            let targetTime = stages[currentStage].time;
+            let timeLeft = targetTime - elapsedTime;
+
+            if (timeLeft <= 0 && currentStage < stages.length - 1) {
+                currentStage++;
+                timeLeft = stages[currentStage].time - elapsedTime;
+            }
+
+            return timeLeft;
+        }
+
+        function startCountdown() {
+            clearInterval(intervalId);
+            intervalId = setInterval(function () {
+                const timeLeft = calculateTimeLeft();
+
+                if (timeLeft <= 0 && currentStage < stages.length - 1) {
+                    updateProgressBar();
+                    moveCar();
+                }
+
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                timeRemaining.textContent = `${hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            }, 1000);
+        }
+
+        function updateProgressBar() {
+            const progressWidth = (currentStage / (stages.length - 1)) * 100;
+            progressBar.style.width = `${progressWidth}%`;
+        }
+
+        function moveCar() {
+            const progressWidth = (currentStage / (stages.length - 1)) * 100;
+            const containerWidth = document.querySelector('.progress-container').offsetWidth;
+            const carWidth = carElement.offsetWidth;
+            const carPosition = (progressWidth / 100) * (containerWidth - carWidth);
+            carElement.style.left = `${carPosition}px`;
+        }
+    </script>
+</body>
+</html>

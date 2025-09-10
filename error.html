@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Delivery Receipt</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    header, footer {
+      background: linear-gradient(to right, #1e3a8a, #2563eb);
+      color: white;
+      text-align: center;
+      padding: 0.2rem 0.3rem;
+      position: relative;
+    }
+    header::before, footer::after {
+      content: "";
+      background: url('https://cdn.pixabay.com/photo/2012/04/14/14/04/car-34283_1280.png') no-repeat center center;
+      background-size: 100px;
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: drive 10s linear infinite;
+      opacity: 0.3;
+    }
+    header::before {
+      left: -120px;
+      animation-name: drive-left;
+    }
+    footer::after {
+      right: -120px;
+      animation-name: drive-right;
+    }
+    @keyframes drive-left {
+      0% { left: -120px; }
+      100% { left: 100%; }
+    }
+    @keyframes drive-right {
+      0% { right: -120px; }
+      100% { right: 100%; }
+    }
+    main {
+      max-width: 850px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0.5rem;
+      font-size: 1.3rem;
+      color: #1e3a8a;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    input[type="file"] {
+      padding: 0;
+    }
+    button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    td, th {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    .section {
+      margin-top: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .carousel img {
+      width: 100%;
+      max-width: 160px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .logo-frame {
+      display: none;
+    }
+.logo-container {
+  margin: 0 auto 1rem auto;
+  width: 100px;
+  height: 100px; /* Ensures it’s a perfect square */
+  border-radius: 50%;
+  border: 3px solid white;
+  overflow: hidden;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fills the container neatly */
+  display: block;
+}
+
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://dehayf5mhw1h7.cloudfront.net/wp-content/uploads/sites/2181/2024/04/13194207/CarvanaLogo-1024x633.webp" alt="Company Logo">
+    </div>
+    <h1>Vehicle Delivery Receipt 🚗</h1>
+      <p><strong>Delivery Date:</strong> May 1, 2025</p>
+  </header>
+
+  <main>
+    <div class="section">
+      <h2>Dealer Information</h2>
+      <p><strong>Name:</strong> Elite Auto Sales</p>
+      <p><strong>Address:</strong> 123 Main Street, Cityville, CA 90210</p>
+      <p><strong>Phone:</strong> (555) 123-4567</p>
+      <p><strong>Email:</strong> sales@eliteautos.com</p>
+    </div>
+
+    <div class="section">
+      <h2>Client Information</h2>
+      <p><strong>Name:</strong> *************</p>
+      <p><strong>Address:</strong> addressssssssssssssssssss</p>
+      <p><strong>Phone:</strong> +1 (615) 556-7764‬</p>
+      <p><strong>Email:</strong> thewarpath63@gmail.com </p>
+    </div>
+
+    <div class="section">
+      <h2>Vehicle Information 🚗</h2>
+      <p><strong>Make:</strong> Mecedes car</p>
+      <p><strong>Model:</strong> Ford F-100 4WD (1970–1976)</p>
+      <p><strong>Year:</strong> 2020</p>
+      <p><strong>Color:</strong> Vintage Blue</p>
+      <p><strong>VIN:</strong> 1FTEF14N0RLA12345</p>
+      <p><strong>Odometer Reading:</strong> 65,000 miles</p>
+    </div>
+
+    <div class="section">
+      <h2>Pricing Details</h2>
+      <table>
+        <tr><th>Item</th><th>Amount</th></tr>
+        <tr><td>Delivery Fee</td><td>$500</td></tr>
+        <tr><th>Total Amount Due</th><th>$500</th></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Pre-Delivery Inspection Checklist 🚗</h2>
+      <table>
+        <tr><th>Item</th><th>Condition</th></tr>
+        <tr><td>Exterior (no damage)</td><td>✅ Good</td></tr>
+        <tr><td>Interior Cleanliness</td><td>✅ Good</td></tr>
+        <tr><td>Tire Condition</td><td>✅ Good</td></tr>
+        <tr><td>Lights/Signals Working</td><td>✅ Yes</td></tr>
+        <tr><td>Keys & Documents Provided</td><td>✅ Yes</td></tr>
+        <tr><td>Battery Level (EV)</td><td>✅ 85%</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Car Image Gallery</h2>
+      <div class="carousel">
+        <img class="slides" src="https://hips.hearstapps.com/vidthumb/7ef5e660-5bf2-4076-bda7-593ee5550c08/thumb_3840x2160.0000001.jpg" alt="Ford F-100 Front View">
+        <img class="slides" src="https://cimg2.ibsrv.net/gimg/www.ford-trucks.com-vbulletin/2000x1333/_dsc0019_68bffedac83fd6fce6d39c03bcae9fb9177732e5.jpg" alt="Ford F-100 Side View">
+        <img class="slides" src="https://images.mecum.com/image/upload/c_fill,f_auto,g_center,q_auto,w_1920/v1740763821/auctions/AZ25/1140849/554376.jpg?" alt="Ford F-100 Vintage Red">
+        <img class="slides" src="https://cimg2.ibsrv.net/cimg/www.ford-trucks.com/1600x900_85-1/566/Show-Ready-High-Boy-Build-Took-Decades-002-669566.jpg" alt="Ford F-100 Rear">
+        <img class="slides" src="https://forddaily.net/attachments/1970-ford-f-250-4x4-powered-by-a-460-v8-boxwood-green-jpg.10250/" alt="Ford F-100 Blue Classic">
+      </div>
+    </div>
+
+    <form id="deliveryForm">
+      <div class="section">
+        <h2>Delivery Details (Fillable)</h2>
+        <label>Delivery Date: <input type="date" name="deliveryDate" required></label><br>
+        <label>Delivery Time: <input type="time" name="deliveryTime" required></label><br>
+        <label>Delivery Location: <input type="text" name="deliveryLocation" required></label><br>
+        <label>Delivered By: <input type="text" name="agentName" required></label><br>
+        <label>Client Identification Verified: <input type="checkbox" name="idVerified"></label>
+      </div>
+
+      <div class="section">
+        <h2>Client Acknowledgment</h2>
+        <p>I, Richard Willis, confirm that I have received the above vehicle in the listed condition, with all necessary documents and keys. I have inspected the vehicle and acknowledge its delivery.</p>
+        <label>Upload Client Signature: <input type="file" name="signature" accept="image/*" required></label><br>
+        <p>Date: April 29, 2025</p>
+      </div>
+
+      <div class="section">
+        <h2>Delivery Agent Acknowledgment</h2>
+        <p>I, Carlos Ramirez, confirm that I have delivered the vehicle to the above client at the stated location and time.</p>
+        <p>Agent Signature:<br>
+          <img src="https://onlinepngtools.com/images/examples-onlinepngtools/george-walker-bush-signature.png" alt="Agent Signature" style="width:180px; margin-top: 0.5rem;">
+        </p>
+        <p>Date: April 29, 2025</p>
+      </div>
+
+      <button type="submit">Submit Receipt</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 Elite Auto Sales 🚗🚗🚗. All rights reserved.
+  </footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB04Q7-e0nPnhoDt4tBy2T23iWt4p_nLaw",
+    authDomain: "cars-11683.firebaseapp.com",
+    databaseURL: "https://cars-11683-default-rtdb.firebaseio.com",
+    projectId: "cars-11683",
+    storageBucket: "cars-11683.appspot.com",  // ✅ Corrected
+    messagingSenderId: "884218610939",
+    appId: "1:884218610939:web:824c4d711bda9a67d15c5e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+
+  document.getElementById('deliveryForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => data[key] = value);
+    data.idVerified = formData.get('idVerified') ? true : false;
+
+    const file = formData.get('signature');
+    const storageRef = ref(storage, `signatures/${Date.now()}_${file.name}`);
+
+    try {
+      const snapshot = await uploadBytes(storageRef, file);
+      const signatureURL = await getDownloadURL(snapshot.ref);
+      data.signatureURL = signatureURL;
+
+      await addDoc(collection(db, 'carDeliveries'), data);
+      alert('Delivery form submitted successfully.');
+      this.reset();
+    } catch (error) {
+      alert('Error submitting form: ' + error.message);
+      console.error(error);
+    }
+  });
+</script>
+
+</body>
+</html>

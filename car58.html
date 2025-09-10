@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Car Purchase Approval - Mr. Kenneth Austin</title>
+  <style>
+    :root {
+      --primary-color: #005f73;
+      --secondary-color: #94d2bd;
+      --accent-color: #0a9396;
+      --light-bg: #e0fbfc;
+      --text-color: #333;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+    }
+    header {
+      background: var(--primary-color);
+      color: white;
+      padding: 20px 10px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    footer {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      color: var(--primary-color);
+    }
+    .car-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table th, table td {
+      border: 1px solid var(--secondary-color);
+      padding: 10px;
+      text-align: left;
+    }
+    table th {
+      background-color: var(--accent-color);
+      color: white;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    .signatures {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .signature-box {
+      width: 45%;
+      border-top: 2px solid var(--primary-color);
+      text-align: center;
+      padding-top: 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .track-btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: 0.3s ease;
+      text-align: center;
+    }
+    .track-btn:hover {
+      background-color: var(--primary-color);
+    }
+    @media (max-width: 700px) {
+      .signatures {
+        flex-direction: column;
+      }
+      .signature-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  🚗 Car Purchase Approval
+</header>
+
+<div class="container">
+
+  <h1>Purchase Confirmation</h1>
+  <p><strong>Date:</strong> April 26, 2025</p>
+
+  <div class="section">
+    <h2>Buyer Information</h2>
+    <p><strong>Name:</strong> Mr. Kenneth Austin</p>
+    <p><strong>Address:</strong> 452 Arizona State</p>
+    <p><strong>Phone:</strong> (123) 456-7890</p>
+    <p><strong>Email:</strong> kenneth.austin@example.com</p>
+  </div>
+
+  <div class="section">
+    <h2>Dealer Information</h2>
+    <p><strong>Dealer Name:</strong> Canyon State Motors</p>
+    <p><strong>Address:</strong> 1234 Car Ave, Phoenix, AZ 85004</p>
+    <p><strong>Phone:</strong> (987) 654-3210</p>
+    <p><strong>Email:</strong> sales@canyonstatemotors.com</p>
+  </div>
+
+  <div class="section">
+    <h2>Vehicle Information</h2>
+    <img src="https://cimg2.ibsrv.net/gimg/www.ford-trucks.com-vbulletin/2000x1333/_dsc0019_68bffedac83fd6fce6d39c03bcae9fb9177732e5.jpg" alt="Ford F-100 4WD (1970-1976)" class="car-image">
+    <p><strong>Make and Model:</strong> Ford F-100 4WD (1970–1976)</p>
+    <p><strong>VIN:</strong> 1FTEF14N0RLA12345</p>
+    <p><strong>Color:</strong> Vintage Blue</p>
+    <p><strong>Mileage:</strong> 65,000 miles</p>
+  </div>
+
+  <div class="section">
+    <h2>Pricing Details</h2>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Amount</th>
+      </tr>
+      <tr>
+        <td>Vehicle Price</td>
+        <td>$18,500</td>
+      </tr>
+      <tr>
+        <td>Delivery Fee</td>
+        <td>$750</td>
+      </tr>
+      <tr>
+        <td>Documentation Fee</td>
+        <td>$200</td>
+      </tr>
+      <tr>
+        <td>Sales Tax (7%)</td>
+        <td>$1,365</td>
+      </tr>
+      <tr>
+        <th>Total Amount Due</th>
+        <th>$20,815</th>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Payment Terms</h2>
+    <p><strong>Payment Method:</strong> Bank Transfer / Certified Check</p>
+    <p><strong>Deposit Paid:</strong> $1,500</p>
+    <p><strong>Remaining Balance:</strong> $19,315</p>
+    <p><strong>Payment Due Date:</strong> May 2, 2025</p>
+  </div>
+
+  <div class="section">
+    <h2>Delivery Information</h2>
+    <p><strong>Delivery Method:</strong> Home Delivery</p>
+    <p><strong>Delivery Address:</strong> 452 Arizona State</p>
+    <p><strong>Estimated Delivery Date:</strong> May 5, 2025</p>
+  </div>
+
+  <div class="section">
+    <h2>Terms and Conditions</h2>
+    <ul>
+      <li>Buyer agrees to purchase the vehicle described above under the conditions listed.</li>
+      <li>Deposit is non-refundable unless otherwise stated in writing.</li>
+      <li>The dealer guarantees the vehicle title is free of liens and encumbrances.</li>
+      <li>Buyer acknowledges receipt of full vehicle inspection report.</li>
+      <li>Buyer agrees to complete full payment before final delivery.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Shipping Tracker</h2>
+    <a href="#" class="track-btn">🚚 Track Your Shipping</a>
+  </div>
+
+  <div class="signatures">
+    <div class="signature-box">
+      Buyer Signature <br><br>
+      Date: __________
+    </div>
+    <div class="signature-box">
+      Dealer Representative <br><br>
+      Date: __________
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2025 Canyon State Motors | Designed for Kenneth Austin 🚗
+</footer>
+
+</body>
+</html>

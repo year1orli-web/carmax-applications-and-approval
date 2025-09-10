@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>notification of Vehicle Delivery Receipt</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    :root {
+      --primary-color: #005f73;
+      --secondary-color: #94d2bd;
+      --accent-color: #0a9396;
+      --light-bg: #e0fbfc;
+      --text-color: #333;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    header, footer {
+      background: linear-gradient(to right, #1e3a8a, #2563eb);
+      color: white;
+      text-align: center;
+      padding: 0.2rem 0.3rem;
+      position: relative;
+    }
+    header::before, footer::after {
+      content: "";
+      background: url('https://cdn.pixabay.com/photo/2012/04/14/14/04/car-34283_1280.png') no-repeat center center;
+      background-size: 100px;
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: drive 10s linear infinite;
+      opacity: 0.3;
+    }
+    header::before {
+      left: -120px;
+      animation-name: drive-left;
+    }
+    footer::after {
+      right: -120px;
+      animation-name: drive-right;
+    }
+    @keyframes drive-left {
+      0% { left: -120px; }
+      100% { left: 100%; }
+    }
+    @keyframes drive-right {
+      0% { right: -120px; }
+      100% { right: 100%; }
+    }
+    main {
+      max-width: 850px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0.5rem;
+      font-size: 1.3rem;
+      color: #1e3a8a;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    input[type="file"] {
+      padding: 0;
+    }
+    button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    td, th {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    .section {
+      margin-top: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  .carousel {
+    max-width: 100%;
+    position: relative;
+  }
+  .slides {
+    display: none;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+    .logo-frame {
+      display: none;
+    }
+.logo-container {
+  margin: 0 auto 1rem auto;
+  width: 100px;
+  height: 100px; /* Ensures it’s a perfect square */
+  border-radius: 50%;
+  border: 3px solid white;
+  overflow: hidden;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fills the container neatly */
+  display: block;
+}
+    .track-btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: 0.3s ease;
+      text-align: center;
+    }
+    .track-btn:hover {
+      background-color: var(--primary-color);
+    }
+
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://sharlie.boisedev.com/wp-content/uploads/2023/06/carvana-791x791.png" alt="Company Logo">
+    </div>
+    <h1>Notification: Vehicle Delivery Pending Payment of Shipment 🚗</h1>
+  </header>
+
+  <main>
+
+
+    <div class="section">
+      <h2>Client Information</h2>
+      <p><strong>Name:</strong> Devin King </p>
+      <p><strong>Date of Birth:</strong> 02/06/1983 </p>
+      <p><strong>Address:</strong> 6211 Dover st Oakland Ca 94609</p>
+      <p><strong>Phone:</strong> +1 510 318-1117</p>
+      <p><strong>Email:</strong> devfitforking@gmail.com</p>
+    </div>
+
+<div class="section">
+  <h2>Vehicle Information 🚗</h2>
+  <p><strong>Make:</strong> Mercedes-Benz</p>
+  <p><strong>Model:</strong> S-Class</p>
+  <p><strong>Trim:</strong> S 580 4MATIC AWD</p>
+  <p><strong>Year:</strong> 2022</p>
+  <p><strong>Body Type:</strong> Sedan</p>
+  <p><strong>Exterior Color:</strong> Gray (Graphite Grey Metallic)</p>
+  <p><strong>Interior Color:</strong> Black</p>
+  <p><strong>Condition:</strong> Used</p>
+  <p><strong>Mileage:</strong> 9,499 mi</p>
+  <p><strong>VIN:</strong> W1K6G7GB8NA122330</p>
+  <p><strong>Stock Number:</strong> 5682</p>
+</div>
+
+<div class="section">
+  <h2>Fuel Economy ⛽</h2>
+  <p><strong>Fuel Tank Size:</strong> 22 gal</p>
+  <p><strong>Combined Gas Mileage:</strong> 20 MPG</p>
+  <p><strong>City Gas Mileage:</strong> 16 MPG</p>
+  <p><strong>Highway Gas Mileage:</strong> 25 MPG</p>
+  <p><strong>Fuel Type:</strong> Gasoline</p>
+</div>
+
+<div class="section">
+  <h2>Performance ⚙️</h2>
+  <p><strong>Engine:</strong> 496 hp 4L V8</p>
+  <p><strong>Horsepower:</strong> 496 hp</p>
+  <p><strong>Transmission:</strong> Automatic</p>
+  <p><strong>Drivetrain:</strong> All-Wheel Drive</p>
+</div>
+
+<div class="section">
+  <h2>Safety Features 🛡️</h2>
+  <ul>
+    <li>ABS Brakes</li>
+    <li>Adaptive Cruise Control</li>
+    <li>Backup Camera</li>
+    <li>Blind Spot Monitoring</li>
+    <li>Curtain Airbags</li>
+    <li>Driver Airbag</li>
+    <li>Front Side Airbags</li>
+    <li>Rear Side Airbags</li>
+    <li>Passenger Airbag</li>
+    <li>Parking Sensors</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Measurements 📏</h2>
+  <p><strong>Doors:</strong> 4 doors</p>
+  <p><strong>Front Legroom:</strong> 41 in</p>
+  <p><strong>Back Legroom:</strong> 43 in</p>
+  <p><strong>Cargo Volume:</strong> 12 cu ft</p>
+</div>
+
+<div class="section">
+  <h2>Tech & Options 💡</h2>
+  <ul>
+    <li>Android Auto</li>
+    <li>Apple CarPlay</li>
+    <li>Bluetooth</li>
+    <li>Navigation System</li>
+    <li>Sunroof/Moonroof</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Pricing Details 💰</h2>
+  <table>
+    <tr><th>Item</th><th>Amount</th></tr>
+    <tr><td>Down Payment</td><td>$750 - Pending</td></tr>
+    <tr><td>Shipment Fee</td><td>$270 - Pending</td></tr>
+    <tr><th>Total Amount Due</th><th>$1,020</th></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Pre-Delivery Inspection Checklist ✅</h2>
+  <table>
+    <tr><th>Item</th><th>Condition</th></tr>
+    <tr><td>Exterior (no damage)</td><td>✅ Excellent</td></tr>
+    <tr><td>Interior Cleanliness</td><td>✅ Excellent</td></tr>
+    <tr><td>Tire Condition</td><td>✅ Good</td></tr>
+    <tr><td>Lights/Signals Working</td><td>✅ All Functional</td></tr>
+    <tr><td>Keys & Documents Provided</td><td>✅ Complete</td></tr>
+  </table>
+</div>
+
+
+
+
+<div class="section">
+  <h2>2022 Mercedes-Benz S-Class S 580 4MATIC AWD</h2>
+  <div class="carousel">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-2284029782473899908-1024x768.jpeg" alt="BMW 5 Series 1">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-7517219981420716885-1024x768.jpeg" alt="BMW 5 Series 3">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-2290393272828655339-1024x768.jpeg" alt="BMW 5 Series 4">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-820906362616633447-1024x768.jpeg" alt="BMW 5 Series 5">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-208765225116568816-1024x768.jpeg" alt="BMW 5 Series 6">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-1407674243216499175-1024x768.jpeg" alt="BMW 5 Series 7">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-7982033356005451890-1024x768.jpeg" alt="BMW 5 Series 8">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-4790150546068161571-1024x768.jpeg" alt="BMW 5 Series 9">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-5228310378560547409-1024x768.jpeg" alt="BMW 5 Series 10">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-4337727786933512437-1024x768.jpeg" alt="BMW 5 Series 11">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-1708380400426117209-1024x768.jpeg" alt="BMW 5 Series 12">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-4511787594400815274-1024x768.jpeg" alt="BMW 5 Series 13">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-276447042721612588-1024x768.jpeg" alt="BMW 5 Series 15">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-8589898281659963080-1024x768.jpeg" alt="BMW 5 Series 16">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-5725252818790574393-1024x768.jpeg" alt="BMW 5 Series 17">
+    <img class="slides" src="https://static.cargurus.com/images/forsale/2025/04/23/16/50/2022_mercedes-benz_s-class-pic-551213952535958278-1024x768.jpeg" alt="BMW 5 Series 18">
+  </div>
+</div>
+
+
+
+    <div class="section">
+      <h2>Delivery Details</h2>
+      <p><strong>Shippment Date: </strong> Awaiting payment</p>
+      <p><strong>Delivery Time: </strong> Pending</p>
+      <p><strong>Delivery Location: </strong> 6211 Dover st Oakland Ca 94609</p>
+      <p><strong>Delivered By: </strong> FedEx delivery</p>
+    </div>
+
+      <div class="section">
+        <h2>Client Acknowledgment</h2>
+        <p>In the shippment paper client will confirm that he/she have received the above vehicle in the listed condition, with all necessary documents and keys. he/she must have inspected the vehicle and acknowledge its delivery/conditions.</p>
+      </div>
+
+      <div class="section">
+        <h2>Delivery Agent Acknowledgment</h2>
+        <p>Agent will confirm that he/she have delivered the vehicle to the above client at the stated location and time.</p>
+
+        <p>on the specified date</p>
+      </div>
+    </form>
+  <div class="section">
+    <h2>Awaiting Shipping Tracker</h2>
+    <a href="https://tracker-smoky.vercel.app/Stacy Lavet Walker.html" class="track-btn">🚚 Track Your Shipping</a>
+  </div>
+  </main>
+  <footer>
+    &copy; CARVANNA Motors 🚗🚗. All rights reserved.
+  </footer>
+
+<script>
+  let slideIndex = 0;
+  carousel();
+  function carousel() {
+    const slides = document.getElementsByClassName("slides");
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(carousel, 3000); // Change every 3 seconds
+  }
+</script>
+
+</body>
+</html>

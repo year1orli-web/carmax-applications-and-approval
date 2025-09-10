@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Car Purchase Approval - Mr. Kenneth Austin</title>
+  <style>
+    :root {
+      --primary-color: #005f73;
+      --secondary-color: #94d2bd;
+      --accent-color: #0a9396;
+      --light-bg: #e0fbfc;
+      --text-color: #333;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+    }
+    header {
+      background: var(--primary-color);
+      color: white;
+      padding: 20px 10px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    footer {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      color: var(--primary-color);
+    }
+    /* Slideshow style */
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      margin: auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .slides {
+      display: none;
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table th, table td {
+      border: 1px solid var(--secondary-color);
+      padding: 10px;
+      text-align: left;
+    }
+    table th {
+      background-color: var(--accent-color);
+      color: white;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    .signatures {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .signature-box {
+      width: 45%;
+      border-top: 2px solid var(--primary-color);
+      text-align: center;
+      padding-top: 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .track-btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: 0.3s ease;
+      text-align: center;
+    }
+    #signatureDisplay {
+      margin-top: 10px;
+      max-width: 100%;
+      border: 2px dashed #ccc;
+      padding: 10px;
+      border-radius: 10px;
+      display: none;
+    }
+    .track-btn:hover {
+      background-color: var(--primary-color);
+    }
+    @media (max-width: 700px) {
+      .signatures {
+        flex-direction: column;
+      }
+      .signature-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  🚗 Car Purchase Approval
+</header>
+
+<div class="container">
+
+  <h1>Purchase Confirmation</h1>
+  <p><strong>Date:</strong> April 26, 2025</p>
+
+  <div class="section">
+    <h2>Buyer Information</h2>
+    <p><strong>Name:</strong> Mr. Kenneth Austin</p>
+    <p><strong>Address:</strong> 452 Arizona State</p>
+    <p><strong>Phone:</strong> (123) 456-7890</p>
+    <p><strong>Email:</strong> kenneth.austin@example.com</p>
+  </div>
+
+  <div class="section">
+    <h2>Dealer Information</h2>
+    <p><strong>Dealer Name:</strong> Canyon State Motors</p>
+    <p><strong>Address:</strong> 1234 Car Ave, Phoenix, AZ 85004</p>
+    <p><strong>Phone:</strong> (987) 654-3210</p>
+    <p><strong>Email:</strong> sales@canyonstatemotors.com</p>
+  </div>
+
+  <div class="section">
+    <h2>Vehicle Information</h2>
+
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+      <img class="slides" src="https://hips.hearstapps.com/vidthumb/7ef5e660-5bf2-4076-bda7-593ee5550c08/thumb_3840x2160.0000001.jpg" alt="Ford F-100 Front View">
+      <img class="slides" src="https://cimg2.ibsrv.net/gimg/www.ford-trucks.com-vbulletin/2000x1333/_dsc0019_68bffedac83fd6fce6d39c03bcae9fb9177732e5.jpg" alt="Ford F-100 Side View">
+      <img class="slides" src="https://images.mecum.com/image/upload/c_fill,f_auto,g_center,q_auto,w_1920/v1740763821/auctions/AZ25/1140849/554376.jpg?" alt="Ford F-100 Vintage Red">
+      <img class="slides" src="https://cimg2.ibsrv.net/cimg/www.ford-trucks.com/1600x900_85-1/566/Show-Ready-High-Boy-Build-Took-Decades-002-669566.jpg" alt="Ford F-100 Rear">
+      <img class="slides" src="https://forddaily.net/attachments/1970-ford-f-250-4x4-powered-by-a-460-v8-boxwood-green-jpg.10250/" alt="Ford F-100 Blue Classic">
+      
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+
+    <p><strong>Make and Model:</strong> Ford F-100 4WD (1970–1976)</p>
+    <p><strong>VIN:</strong> 1FTEF14N0RLA12345</p>
+    <p><strong>Color:</strong> Vintage Blue</p>
+    <p><strong>Mileage:</strong> 65,000 miles</p>
+  </div>
+
+  <div class="section">
+    <h2>Pricing Details</h2>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Amount</th>
+      </tr>
+      <tr>
+        <td>Vehicle Price</td>
+        <td>$18,500</td>
+      </tr>
+      <tr>
+        <td>Delivery Fee</td>
+        <td>$750</td>
+      </tr>
+      <tr>
+        <td>Documentation Fee</td>
+        <td>$200</td>
+      </tr>
+      <tr>
+        <td>Sales Tax (7%)</td>
+        <td>$1,365</td>
+      </tr>
+      <tr>
+        <th>Total Amount Due</th>
+        <th>$20,815</th>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Payment Terms</h2>
+    <p><strong>Payment Method:</strong> Bank Transfer / Certified Check</p>
+    <p><strong>Deposit Paid:</strong> $1,500</p>
+    <p><strong>Remaining Balance:</strong> $19,315</p>
+    <p><strong>Payment Due Date:</strong> May 2, 2025</p>
+  </div>
+
+  <div class="section">
+    <h2>Delivery Information</h2>
+    <p><strong>Delivery Method:</strong> Home Delivery</p>
+    <p><strong>Delivery Address:</strong> 452 Arizona State</p>
+    <p><strong>Estimated Delivery Date:</strong> May 5, 2025</p>
+  </div>
+
+  <div class="section">
+    <h2>Terms and Conditions</h2>
+    <ul>
+      <li>Buyer agrees to purchase the vehicle described above under the conditions listed.</li>
+      <li>Deposit is non-refundable unless otherwise stated in writing.</li>
+      <li>The dealer guarantees the vehicle title is free of liens and encumbrances.</li>
+      <li>Buyer acknowledges receipt of full vehicle inspection report.</li>
+      <li>Buyer agrees to complete full payment before final delivery.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Shipping Tracker</h2>
+    <a href="https://tracker-smoky.vercel.app/tracker.html" class="track-btn">🚚 Track Your Shipping</a>
+  </div>
+
+ 
+
+  <div class="signatures">
+    <div class="signature-box">
+      Buyer Signature <br><br>
+      Date: __________
+    </div>
+    <div class="signature-box">
+      Dealer Representative <br><br>
+      Date: __________
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2025 Canyon State Motors | Designed for Kenneth Austin 🚗
+</footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-storage.js";
+  import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyB04Q7-e0nPnhoDt4tBy2T23iWt4p_nLaw",
+    authDomain: "cars-11683.firebaseapp.com",
+    projectId: "cars-11683",
+    storageBucket: "cars-11683.appspot.com",
+    messagingSenderId: "884218610939",
+    appId: "1:884218610939:web:824c4d711bda9a67d15c5e"
+  };
+
+  // Initialize
+  const app = initializeApp(firebaseConfig);
+  const storage = getStorage(app);
+  const db = getFirestore(app);
+
+  const signatureInput = document.getElementById('signatureInput');
+  const signatureDisplay = document.getElementById('signatureDisplay');
+  const saveButton = document.getElementById('saveButton');
+
+  let selectedFile = null;
+  const buyerId = "kenneth_austin";
+
+  async function loadSignature() {
+    try {
+      const signatureDocRef = doc(db, 'signatures', buyerId);
+      const docSnap = await getDoc(signatureDocRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        signatureDisplay.src = data.signatureURL;
+        signatureDisplay.style.display = 'block';
+        console.log('Signature loaded successfully.');
+      } else {
+        console.log('No signature found in Firestore.');
+      }
+    } catch (error) {
+      console.error('Error loading signature:', error);
+    }
+  }
+
+  signatureInput.addEventListener('change', (e) => {
+    selectedFile = e.target.files[0];
+    if (!selectedFile) return;
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      signatureDisplay.src = event.target.result;
+      signatureDisplay.style.display = 'block';
+      saveButton.style.display = 'inline-block'; 
+    }
+    reader.readAsDataURL(selectedFile);
+  });
+
+  saveButton.addEventListener('click', async () => {
+    if (!selectedFile) return alert('Please select a signature first.');
+
+    try {
+      const storageRef = ref(storage, `signatures/${buyerId}_${selectedFile.name}`);
+      await uploadBytes(storageRef, selectedFile);
+
+      const downloadURL = await getDownloadURL(storageRef);
+
+      await setDoc(doc(db, 'signatures', buyerId), {
+        signatureURL: downloadURL,
+        buyerName: "Mr. Kenneth Austin",
+        uploadedAt: new Date()
+      });
+
+      alert('Signature saved successfully!');
+      saveButton.style.display = 'none';
+      console.log('Signature saved successfully to Storage and Firestore.');
+    } catch (error) {
+      console.error('Error saving signature:', error);
+      alert('Failed to save signature. See console for details.');
+    }
+  });
+
+  window.addEventListener('load', loadSignature);
+
+  // Slideshow
+  let slideIndex = 0;
+  showSlides();
+  function showSlides() {
+    let slides = document.getElementsByClassName("slides");
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex-1].style.display = "block";  
+    setTimeout(showSlides, 3000);
+  }
+</script>
+
+</body>
+</html>

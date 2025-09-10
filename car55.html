@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Purchase Confirmation – Canyon State Motors</title>
+  <style>body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f9f9f9;
+}
+header, footer {
+  background-color: #005a8b; /* navy blue for trust */
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
+main {
+  padding: 1em;
+}
+.car-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 800px;
+  margin: 1em auto;
+}
+.car-image {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.details {
+  flex: 1;
+  padding: 0 1em;
+}
+.details h2 {
+  margin-top: 0;
+  color: #005a8b;
+}
+.details p {
+  margin: 0.5em 0;
+}
+.confirmation {
+  max-width: 800px;
+  margin: 1em auto;
+  padding: 1em;
+  font-size: 1.1em;
+}
+footer p {
+  margin: 0;
+  font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .car-info {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+  <header>
+    <h1>Purchase Confirmation</h1>
+    <p>Congratulations, Mr. Kenneth Austin of 452 Arizona State!</p>
+  </header>
+  <main>
+    <section class="car-info">
+      <img src="https://imgd.aeplcdn.com/1920x1080/n/cw/ec/192443/camry-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80&q=80" alt="Toyota Camry 2022" class="car-image">
+      <div class="details">
+        <h2>Toyota Camry 2022</h2>
+        <p><strong>Price:</strong> $25,000</p>
+        <p><strong>Delivery Fee:</strong> $500</p>
+      </div>
+    </section>
+    <section class="confirmation">
+      <p>Your purchase has been <strong>approved</strong>! We are processing your order and will contact you with delivery details shortly.</p>
+      <p>Thank you for choosing Canyon State Motors.</p>
+    </section>
+  </main>
+  <footer>
+    <p>Dealer: Canyon State Motors &bull; 1234 Car Ave, Phoenix, AZ 85004</p>
+  </footer>
+</body>
+</html>

